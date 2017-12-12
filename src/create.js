@@ -9,6 +9,18 @@ const defaultStatic = {
   path: 'build/client',
 };
 
+function addExtraMiddleware(server, middleware) {
+  if (middleware.length > 0) {
+    middleware.forEach((m) => {
+      if (Array.isArray(m)) {
+        server.use(...m);
+      } else {
+        server.use(m);
+      }
+    });
+  }
+}
+
 export default function createServer({
   staticConfig = defaultStatic,
   afterSecurity = [],
@@ -17,35 +29,17 @@ export default function createServer({
   enableCSP = false,
 }) {
   const server = express();
+
   createError(server);
   createSecurity(server, { enableNonce, enableCSP });
-
-  if (afterSecurity.length > 0) {
-    afterSecurity.forEach((middleware) => {
-      if (Array.isArray(middleware)) {
-        server.use(...middleware);
-      } else {
-        server.use(middleware);
-      }
-    });
-  }
-
+  addExtraMiddleware(server, afterSecurity);
   createCore(server);
 
   if (staticConfig) {
     server.use(staticConfig.public, express.static(staticConfig.path));
   }
 
-  if (beforeFallback.length > 0) {
-    afterSecurity.forEach((middleware) => {
-      if (Array.isArray(middleware)) {
-        server.use(...middleware);
-      } else {
-        server.use(middleware);
-      }
-    });
-  }
-
+  addExtraMiddleware(server, beforeFallback);
   createFallback(server);
 
   return server;
