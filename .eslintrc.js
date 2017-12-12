@@ -6,6 +6,7 @@ module.exports = {
         'import/named': 0,
         'import/default': 0,
         'import/namespace': 0,
-        'import/no-commonjs': 0
+        'import/no-commonjs': 0,
+        'import/prefer-default-export': 0
     }
 };
