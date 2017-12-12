@@ -1,4 +1,5 @@
 [![CircleCI](https://circleci.com/gh/bummmble/Hive.svg?style-svg)](https://circleci.com/gh/bummmble/Hive)
+[![Maintainability](https://api.codeclimate.com/v1/badges/3acc284e618da936f65a/maintainability)](https://codeclimate.com/github/bummmble/Hive/maintainability)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
