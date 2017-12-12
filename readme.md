@@ -4,6 +4,13 @@
 
 Hive is a centralized, Express HTTP Server to be used as a starting point for building modern applications.
 
+## Installation
+Install with the package manager of your choice easily. NPM is used below
+
+```
+npm install -S bummmble-hive
+```
+
 ## Features
 
 - A solid foundation for starting an Express project

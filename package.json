@@ -1,5 +1,5 @@
 {
-  "name": "hive",
+  "name": "bummmble-hive",
   "version": "0.1.0",
   "author": {
     "name": "Forrest Collins",
@@ -17,7 +17,11 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "test": "NODE_ENV=test nyc ava --verbose"
+    "test": "NODE_ENV=test nyc ava --verbose",
+    "build:cli": "node build.js --cli",
+    "build:cjs": "node build.js --cjs",
+    "build:es": "node build.js --es",
+    "build": "npm run build:cjs && npm run build:es"
   },
   "ava": {
     "require": [
