@@ -1,11 +1,17 @@
 import test from 'ava';
 import { createServer } from '../src/index';
-
 /* eslint-disable no-underscore-dangle */
+function getLayers(server) {
+  return server._router.stack.map(layer => layer.name);
+}
+
+function testMiddleware(req, res, next) {
+  return next();
+}
+
 test('Should create an express app', (t) => {
   const server = createServer({});
-  const layers = server._router.stack;
-  const names = layers.map(layer => layer.name);
+  const names = getLayers(server);
   t.true(names.includes('hpp'));
   t.true(names.includes('xXssProtection'));
   t.true(names.includes('frameguard'));
@@ -19,4 +25,20 @@ test('Server should have x-powered-by setting disabled', (t) => {
   const server = createServer({});
   const { settings } = server;
   t.true(settings['x-powered-by'] === false);
+});
+
+test('Should add afterSecurity middleware', (t) => {
+  const server = createServer({
+    afterSecurity: [testMiddleware],
+  });
+  const names = getLayers(server);
+  t.true(names.includes('testMiddleware'));
+});
+
+test('Should add beforeFallback middleware', (t) => {
+  const server = createServer({
+    beforeFallback: [testMiddleware],
+  });
+  const names = getLayers(server);
+  t.true(names.includes('testMiddleware'));
 });
