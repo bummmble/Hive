@@ -14,10 +14,11 @@ export default function createServer({
   afterSecurity = [],
   beforeFallback = [],
   enableNonce = false,
+  enableCSP = false,
 }) {
   const server = express();
   createError(server);
-  createSecurity(server, { enableNonce });
+  createSecurity(server, { enableNonce, enableCSP });
 
   if (afterSecurity.length > 0) {
     afterSecurity.forEach((middleware) => {
