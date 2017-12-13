@@ -4,7 +4,7 @@ import uuid from 'uuid';
 
 export default function createSecurity(
   server,
-  { enableNonce = true, enableCSP = true },
+  { enableNonce = true, enableCSP = true }
 ) {
   if (enableNonce) {
     server.use((req, res, next) => {

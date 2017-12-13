@@ -26,7 +26,7 @@ export default function createServer({
   afterSecurity = [],
   beforeFallback = [],
   enableNonce = false,
-  enableCSP = false,
+  enableCSP = false
 }) {
   const server = express();
 
