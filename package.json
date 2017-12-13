@@ -14,7 +14,7 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "test": "NODE_ENV=test nyc ava --verbose",
+    "test": "NODE_ENV=test nyc ava --verbose && npm run coverage",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "build:cli": "node build.js --cli",
     "build:cjs": "node build.js --cjs",
