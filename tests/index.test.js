@@ -19,6 +19,7 @@ test('Should create an express app', (t) => {
   t.true(names.includes('nosniff'));
   t.true(names.includes('cookieParser'));
   t.true(names.includes('jsonParser'));
+  t.true(names.includes('serveStatic'));
 });
 
 test('Server should have x-powered-by setting disabled', (t) => {
@@ -42,3 +43,12 @@ test('Should add beforeFallback middleware', (t) => {
   const names = getLayers(server);
   t.true(names.includes('testMiddleware'));
 });
+
+test('Should add property CSP', t => {
+    const server = createServer({
+        enableCSP: true,
+        enableNonce: true
+    });
+    const names = getLayers(server);
+    t.true(names.includes('csp'));
+})
