@@ -19,7 +19,9 @@
     "build:cli": "node build.js --cli",
     "build:cjs": "node build.js --cjs",
     "build:es": "node build.js --es",
-    "build": "npm run build:cjs && npm run build:es"
+    "build": "npm run build:cjs && npm run build:es",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "ava": {
     "require": [
@@ -63,6 +65,8 @@
     "helmet": "^3.9.0",
     "hpp": "^0.2.2",
     "pretty-error": "^2.1.1",
-    "uuid": "^3.1.0"
-  }
+    "uuid": "^3.1.0",
+    "snyk": "^1.316.1"
+  },
+  "snyk": true
 }
